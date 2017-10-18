@@ -2,11 +2,17 @@
   "name": "judge-form-web",
   "version": "1.0.0",
   "description": "Stackup Judge Form",
+  "engines": {
+    "node": "6.11.1",
+    "npm": "5.3.0"
+  },
   "main": "server/app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "postinstall": "bower install",
+    "start": "node server/app.js",
+    "test": "jest --forceExitAfterTestRun"
   },
-  "author": "",
+  "author": "Kenneth Phang",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.2",
@@ -16,5 +22,12 @@
     "mailcomposer": "^4.0.2",
     "mailgun-js": "^0.13.1",
     "mongodb": "^2.2.33"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.0",
+    "jest": "^20.0.4",
+    "superagent": "^3.6.0",
+    "supertest": "^3.0.0"
   }
 }
