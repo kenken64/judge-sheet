@@ -8,8 +8,7 @@
   },
   "main": "server/app.js",
   "scripts": {
-    "postinstall": "bower install",
-    "start": "node server/app.js",
+    "start": "npm install; bower install;node server/app.js",
     "test": "jest --forceExitAfterTestRun"
   },
   "author": "Kenneth Phang",
