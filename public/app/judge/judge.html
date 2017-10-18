@@ -1,0 +1,17 @@
+<div class="container" ng-controller="JudgeCtrl as ctrl">
+    <form class="form-signin" name="judgeForm" ng-submit="judgeForm.$valid && ctrl.onSubmit()" novalidate>
+    <h2 class="form-signin-heading">Full Stack Foundation Demo Day</h2>
+    <label for="inputEmail" class="sr-only">Judge Name</label>
+    <input type="text" id="inputEmail" class="form-control" placeholder="Judge name" required ng-model="self.judgeInfo.judgename" autofocus>
+    <label for="batchRun" class="sr-only">Batch</label>
+    <select  class="form-control" id="batchRun" ng-model="self.judgeInfo.batchrun" required>
+        <option ng-repeat="batchrun in ctrl.batchruns" value="{{batchrun.runNo}}">{{batchrun.runName}}</option>
+    </select>
+    <div class="checkbox">
+        <label>
+        <input type="checkbox" value="remember-me" ng-model="self.judgeInfo.rememberme"> Remember me
+        </label>
+    </div>
+    <input id="submit" name"submit" type="submit" class="btn btn-lg btn-primary btn-block" />
+    </form>
+</div> <!-- /container -->
