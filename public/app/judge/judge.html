@@ -1,16 +1,6 @@
-<style>
-     body {
-	background: url(login_building.jpg) no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-}
-</style>
-
 <div class="container" ng-controller="JudgeCtrl as ctrl">
     <form class="form-signin" name="judgeForm" ng-submit="judgeForm.$valid && ctrl.onSubmit()" novalidate>
-    <h2 class="form-signin-heading">Full Stack Foundation Demo Day</h2>
+    <h2 class="form-signin-heading animated infinite bounce">FSF17 Demo Day</h2>
     <label for="judgeName" class="sr-only">Judge Name</label>
     <input type="text" id="judgeName" name="judgeName" class="form-control" placeholder="Judge name" required ng-model="ctrl.judgeInfo.judgename" autofocus>
     <label for="batchRun" class="sr-only">Batch</label>
