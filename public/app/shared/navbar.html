@@ -1,0 +1,42 @@
+<nav class="navbar navbar-default" ng-controller="HeaderController as headerctrl">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Full Stack Foundation - Demo Day</a>
+      </div>
+  
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+            <li ng-class="{ active: headerctrl.isActive('/score-sheet')}"><a ui-sref="score-sheet" >Score Sheet <span class="sr-only">(current)</span></a></li>
+            <li ng-class="{ active: headerctrl.isActive('/compute')}"><a ui-sref="compute" >Result</a></li>
+            <li ng-class="{ active: headerctrl.isActive('/admin')}"><a ui-sref="admin" >Team</a></li>
+            <li ng-class="{ active: headerctrl.isActive('/runs')}"><a ui-sref="runs" >Runs</a></li>
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+            <li><h4>{{headerctrl.judgename}}&nbsp;&nbsp;</h4></li>
+            <li>
+                <div class="btn-group" uib-dropdown is-open="status.isopen">
+                    <button id="single-button" type="button" class="btn btn-primary btn-lg" uib-dropdown-toggle ng-disabled="disabled">
+                      Batch Run No. <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+                      <li role="menuitem"><a href="#">Run 2017 - 1</a></li>
+                      <li role="menuitem"><a href="#">Run 2017 - 2</a></li>
+                      <li role="menuitem"><a href="#">Run 2017 - 3</a></li>
+                      <li role="menuitem"><a href="#">Run 2017 - 4</a></li>
+                    </ul>
+                  </div>  
+            </li>
+            
+          </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>

@@ -1,23 +1,18 @@
 (function () {
     angular
         .module("JudgeSheetApp")
-        .controller("AdminCtrl", ["$http",'$state','$document','$uibModal',AdminCtrl])
-        .controller("AddTeamCtrl", ["$http",'$state','$uibModalInstance', 'items' ,AddTeamCtrl]);
-
-    function AddTeamCtrl($http,$state,$uibModalInstance, items){
-
+        .controller("BatchRunsCtrl", ["$http",'$state', '$document','$uibModal',BatchRunsCtrl])
+        .controller("AddBatchRunsCtrl", ["$uibModalInstance", 'items', AddBatchRunsCtrl]);
+        
+    
+    function AddBatchRunsCtrl($uibModalInstance, items){
+        var self = this;
+        
     }
 
-    function AdminCtrl($http,$state, $document,$uibModal) {
+    function BatchRunsCtrl($http,$state,$document,$uibModal) {
         var self = this;
-        self.data = [
-            { projectName: 'FitLy', members: [{name:"Person A"},{name:"Person B"} ] },
-            { projectName: 'FitLy2', members: [{name:"Person A"},{name:"Person B"} ] },
-            { projectName: 'FitLy3', members: [{name:"Person A"},{name:"Person C"} ] },
-            { projectName: 'FitLy4', members: [{name:"Person A"} ] },
-            { projectName: 'FitLy5', members: [{name:"Person A"},{name:"Person B"} ] }
-        ];
-
+        
         self.open = function (size, parentSelector) {
             var parentElem = parentSelector ? 
                 angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
@@ -25,8 +20,8 @@
                 animation: self.animationsEnabled,
                 ariaLabelledBy: 'modal-title',
                 ariaDescribedBy: 'modal-body',
-                templateUrl: '../app/admin/addTeam.html',
-                controller: 'AddTeamCtrl',
+                templateUrl: '../app/admin/addBatchRun.html',
+                controller: 'AddBatchRunsCtrl',
                 controllerAs: '$ctrl',
                 size: size,
                 appendTo: parentElem,
@@ -39,6 +34,5 @@
                 if (['cancel', 'backdrop click', 'escape key press'].indexOf(resp) === -1) throw resp;
             });
         };
-    
     }
 })();

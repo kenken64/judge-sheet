@@ -3,8 +3,8 @@
 <div class="row">
         <div class="col-xs-6 col-sm-1"></div>
         <div class="col-xs-6 col-sm-3">
-<button type="button" class="btn btn-primary" ng-model="ctrl.addProject" ng-click="ctrl.open('lg')" uib-btn-checkbox btn-checkbox-true="1" btn-checkbox-false="0">
-    New Team
+<button type="button" class="btn btn-primary" ng-model="ctrl.addRun" ng-click="ctrl.open('lg')" uib-btn-checkbox btn-checkbox-true="1" btn-checkbox-false="0">
+    New Run
 </button>
 
 <div class="list" ng-show="ctrl.data">
@@ -16,15 +16,14 @@
         </div>
     </div>
     <div class="row">
-        <div class="item  col-xs-4 col-lg-4" ng-repeat="project in ctrl.data | orderBy:'projectName'">
-            <h4>{{project.projectName}}</h4>
-            <h5 ng-repeat="member in project.members">{{member.name}}</h5>
+        <div class="item  col-xs-4 col-lg-4" ng-repeat="batchrun in ctrl.data | orderBy:'name'">
+            <h4>{{batchrun.name}}</h4>
             <button type="button" class="btn btn-default" ng-click="ctrl.getProduct(product.id)">Edit</button>
         </div>
     </div>
 </div>
 <div class="list" ng-hide="ctrl.data.length>0">
-    <h1>No record found.</h1>
+    <h3>No record found.</h3>
 </div>
 </div>
 </div>

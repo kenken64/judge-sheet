@@ -30,6 +30,12 @@
                 controller: 'AdminCtrl',
                 controllerAs: 'ctrl'
             })
+            .state("runs", {
+                url: "/runs",
+                templateUrl: "../app/admin/batchruns.html",
+                controller: 'BatchRunsCtrl',
+                controllerAs: 'ctrl'
+            })
             
 
         $urlRouterProvider.otherwise("/home");
