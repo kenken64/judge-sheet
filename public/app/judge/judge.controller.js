@@ -25,9 +25,10 @@
         function onSubmit(){
             console.log("submit to server side");
             $http.post("/api/v1/judge", self.judgeInfo).then((result)=>{
-                //console.log("result > "+ JSON.stringify(result));
                 console.log(self.judgeInfo.judgename);
+                console.log(self.judgeInfo.batchrun);
                 localStorageService.set("judge_name", self.judgeInfo.judgename);
+                localStorageService.set("selectedGlobalRun", self.judgeInfo.batchrun);
                 $state.go("score-sheet");
             }).catch((error)=>{
                 console.log("error > "+ error);
