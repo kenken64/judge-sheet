@@ -1,14 +1,14 @@
 <div class="container">
-<form class="form-addRun">
+<form name="ctrl.batchrunform" class="form-addRun">
 <div class="form-group col-lg-4">
     <label for="runName">Run Name</label>
-    <input type="text" class="form-control" id="runName" placeholder="Run..">
+    <input type="text" class="form-control" id="runName" ng-model="ctrl.run.runName" placeholder="Run.." required>
 </div>
 <div class="form-group col-lg-4">
     <label for="year">Year</label>
-    <input type="text" class="form-control" id="year" placeholder="YYYY..">
+    <input type="text" class="form-control" id="year" ng-model="ctrl.run.year" placeholder="YYYY.." required>
 </div>
 <br/>
-<button type="submit" class="btn btn-default">Save</button>
+<button type="submit" ng-disabled="ctrl.batchrunform.$invalid" ng-click="ctrl.saveRun()" class="btn btn-default">Save</button>
 </form>
 </div>

@@ -8,7 +8,7 @@
 </button>
 
 <div class="list" ng-show="ctrl.data">
-    <div class="row">
+    <div class="row" ng-show="ctrl.data.length > 0"> 
         <div class="list-header col-lg-12 col-md-12 col-sm-12">
             <ul uib-pagination total-items="ctrl.totalItems" ng-model="ctrl.currentPage"
                 max-size="ctrl.maxSize" items-per-page="ctrl.itemsPerPage" ng-change="ctrl.pageChanged()"
@@ -16,14 +16,22 @@
         </div>
     </div>
     <div class="row">
-        <div class="item  col-xs-4 col-lg-4" ng-repeat="project in ctrl.data | orderBy:'projectName'">
-            <h4>{{project.projectName}}</h4>
-            <h5 ng-repeat="member in project.members">{{member.name}}</h5>
-            <button type="button" class="btn btn-default" ng-click="ctrl.getProduct(product.id)">Edit</button>
+        <div class="item col-xs-6 col-lg-6" ng-repeat="project in ctrl.data | orderBy:'name'">
+            <md-card>
+                <img src="{{project.photo}}" class="md-card-image" alt="image caption">
+                <md-card-content>
+                  <h2>{{project.name}}</h2>
+                  <p>{{project.member1}}</p>
+                  <p>{{project.member2}}</p>
+                </md-card-content>
+                <md-card-actions layout="row" layout-align="end center">
+                    <button type="button" class="btn btn-primary" ng-click="ctrl.getProduct(product.id)">Edit</button>
+                </md-card-actions>
+            </md-card>
         </div>
     </div>
 </div>
-<div class="list" ng-hide="ctrl.data.length>0">
+<div class="list" ng-hide="ctrl.data.length > 0">
     <h1>No record found.</h1>
 </div>
 </div>

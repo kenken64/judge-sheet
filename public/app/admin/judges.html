@@ -1,0 +1,37 @@
+<div ng-include=" '/app/shared/navbar.html' "></div>
+<hr/>
+<div class="row">
+    <div class="col-xs-6 col-sm-1"></div>
+    <div class="col-xs-6 col-sm-3">
+<button type="button" class="btn btn-primary" ng-model="ctrl.addJudge" ng-click="ctrl.open('lg')" uib-btn-checkbox btn-checkbox-true="1" btn-checkbox-false="0">
+New Judge
+</button>
+
+<div class="list" ng-show="ctrl.data">
+<div class="row" ng-show="ctrl.data.length > 0">
+    <div class="list-header col-lg-12 col-md-12 col-sm-12">
+        <ul uib-pagination total-items="ctrl.totalItems" ng-model="ctrl.currentPage"
+            max-size="ctrl.maxSize" items-per-page="ctrl.itemsPerPage" ng-change="ctrl.pageChanged()"
+            class="pagination-sm" boundary-link-numbers="true" rotate="false"></ul>
+    </div>
+</div>
+<div class="row">
+    <div class="item col-xs-6 col-lg-6" ng-repeat="judge in ctrl.data | orderBy:'judgeName'">
+        <md-card>
+            <img src="../../assets/images/avatar.png" class="md-card-image" alt="image caption">
+            <md-card-content>
+              <h2>{{judge.judgeName}}</h2>
+              <p>{{judge.runNo}} - {{judge.year}}</p>
+            </md-card-content>
+            <md-card-actions layout="row" layout-align="end center">
+                <button type="button" class="btn btn-primary" ng-click="ctrl.getProduct(product.id)">Edit</button>
+            </md-card-actions>
+        </md-card>
+    </div>
+</div>
+</div>
+<div class="list" ng-hide="ctrl.data.length>0">
+<h1>No record found.</h1>
+</div>
+</div>
+</div>

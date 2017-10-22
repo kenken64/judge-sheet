@@ -1,9 +1,9 @@
 (function () {
     angular
         .module("JudgeSheetApp")
-        .controller("JudgeCtrl", ["$http",'$state', 'localStorageService' ,JudgeCtrl]);
+        .controller("JudgeCtrl", ["$http",'$state', 'localStorageService', 'JudgeSheetAppAPI' ,JudgeCtrl]);
 
-    function JudgeCtrl($http,$state, localStorageService) {
+    function JudgeCtrl($http,$state, localStorageService, JudgeSheetAppAPI) {
         var self = this;
 
         self.onSubmit = onSubmit;
@@ -13,20 +13,12 @@
 
         }
 
-        self.batchruns =[
-        {
-            runNo: 0,
-            runName: "Please select"
-        },
-        {
-            runNo: 1,
-            runName: "2017 R3"
-        }, {
-            runNo: 2,
-            runName: "2017 R4"
-        }]; 
-
         function  initForm(){
+            JudgeSheetAppAPI.getAllRuns().then((result)=>{
+                self.batchruns = result.data;
+            }).catch((error)=>{
+                console.log(error);
+            });
             self.judgeInfo.batchrun = "0";
         }
         

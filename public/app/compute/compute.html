@@ -11,9 +11,15 @@
         </div>
     </div>
     <div class="row">
-        <div class="item  col-xs-4 col-lg-4" ng-repeat="project in ctrl.data | orderBy:'projectName'">
-            <h4>Project name : {{project.projectName}}</h4>
-            <h5>Grand Total : {{project.grandTotal}}</h5>
+        <div class="item col-xs-6 col-lg-6" ng-repeat="project in ctrl.data | orderBy:'_id'">
+            <md-card>
+                <img src="../../assets/images/result.png" class="md-card-image" alt="image caption">
+                <md-card-content>
+                  <h2>{{project._id}}</h2>
+                  <p>Run No : {{project.runNo}}</p>
+                  <p>Grand Total : {{project.total}}</p>
+                </md-card-content>
+            </md-card>
         </div>
     </div>
 </div>

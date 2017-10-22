@@ -1,11 +1,20 @@
+<script>
+    bubbly({
+    colorStart: "#fff4e6",
+    colorStop: "#ffe9e4",
+    blur: 1,
+    compose: "source-over",
+    bubbleFunc: () => `hsla(${Math.random() * 50}, 100%, 50%, .3)`
+});
+</script>
 <div class="container" ng-controller="JudgeCtrl as ctrl">
     <form class="form-signin" name="judgeForm" ng-submit="judgeForm.$valid && ctrl.onSubmit()" novalidate>
-    <h2 class="form-signin-heading animated infinite bounce">FSF17 Demo Day</h2>
+    <h2 class="form-signin-heading animated infinite bounce">Judget Sheet (D Day)</h2>
     <label for="judgeName" class="sr-only">Judge Name</label>
     <input type="text" id="judgeName" name="judgeName" class="form-control" placeholder="Judge name" required ng-model="ctrl.judgeInfo.judgename" autofocus>
     <label for="batchRun" class="sr-only">Batch</label>
     <select  class="form-control" id="batchRun" ng-model="ctrl.judgeInfo.batchrun" required>
-        <option ng-repeat="batchrun in ctrl.batchruns" value="{{batchrun.runNo}}">{{batchrun.runName}}</option>
+        <option ng-repeat="batchrun in ctrl.batchruns" value="{{batchrun.runNo}} - {{batchrun.year}}">{{batchrun.runName}} - {{batchrun.year}}</option>
     </select>
     <div class="checkbox">
         <label>

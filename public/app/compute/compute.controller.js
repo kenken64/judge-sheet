@@ -1,16 +1,27 @@
 (function () {
     angular
         .module("JudgeSheetApp")
-        .controller("ComputeCtrl", ["$http",'$state' ,ComputeCtrl]);
+        .controller("ComputeCtrl", ["$http",'$state' , 'JudgeSheetAppAPI', 'localStorageService', '$scope',ComputeCtrl]);
 
-    function ComputeCtrl($http,$state) {
+    function ComputeCtrl($http,$state, JudgeSheetAppAPI, localStorageService, $scope) {
         var self = this;
-        self.data = [
-            { projectName: 'FitLy', grandTotal: 12 },
-            { projectName: 'FitLy2', grandTotal: 12 },
-            { projectName: 'FitLy3', grandTotal: 12 },
-            { projectName: 'FitLy4', grandTotal: 12 },
-            { projectName: 'FitLy5', grandTotal: 12 }
-        ];
+        
+        var selectedRun = localStorageService.get("selectedGlobalRun");
+        getResult(selectedRun);
+
+        $scope.$on("selectedRunChanged",function(){
+            var selectedRun = localStorageService.get("selectedGlobalRun");
+            console.log("refresh result list  " + selectedRun);
+            getResult(selectedRun);
+        });
+
+        function getResult(selectedRun){
+            JudgeSheetAppAPI.getResult(selectedRun).then((result)=>{
+                console.log(result.data);
+                self.data = result.data;
+            }).catch((error)=>{
+                console.log(error);
+            });
+        }
     }
 })();

@@ -5,34 +5,36 @@
   <div class="col-xs-6 col-sm-3">
   <form name="outerForm" class="tab-form-demo">
     <uib-tabset active="activeForm">
-      <uib-tab ng-repeat="tab in ctrl.projects" heading="{{tab.project_name}}">
+      <uib-tab ng-repeat="tab in ctrl.projects" TabIndex="{{tab.id}}" heading="{{tab.name}}" select="ctrl.message($event, $index)">
         <ng-form name="nestedForm">
           <div class="form-group">
             <h2><label>Project Name: </label>
-            <label>{{tab.project_name}}</label></h2>
+            <label>{{tab.name}}</label></h2>
             <hr/>
             <h3>
             <label>Presentation Quality</label>
-            <div ng-init="ctrl.gradedProject.presentationq = 1"><span uib-rating ng-model="ctrl.gradedProject.presentationq" max="5" state-on="'glyphicon-ok-sign'" state-off="'glyphicon-ok-circle'" aria-labelledby="custom-icons-1"></span> <b>(<i>Rate:</i> {{ctrl.gradedProject.presentationq}})</b></div>
+            <div ng-init="ctrl.gradedProject.presentationq = 1"><span uib-rating ng-model="ctrl.gradedProject.presentationq" ng-click="ctrl.sumUp()" max="5" state-on="'glyphicon-ok-sign'" state-off="'glyphicon-ok-circle'" aria-labelledby="custom-icons-1"></span> <b>(<i>Rate:</i> {{ctrl.gradedProject.presentationq}})</b></div>
             <label>Business Viability</label>
-            <div ng-init="ctrl.gradedProject.businessv = 1"><span uib-rating ng-model="ctrl.gradedProject.businessv" max="5" state-on="'glyphicon-ok-sign'" state-off="'glyphicon-ok-circle'" aria-labelledby="custom-icons-1"></span> <b>(<i>Rate:</i> {{ctrl.gradedProject.businessv}})</b></div>
+            <div ng-init="ctrl.gradedProject.businessv = 1"><span uib-rating ng-model="ctrl.gradedProject.businessv" ng-click="ctrl.sumUp()" max="5" state-on="'glyphicon-ok-sign'" state-off="'glyphicon-ok-circle'" aria-labelledby="custom-icons-1"></span> <b>(<i>Rate:</i> {{ctrl.gradedProject.businessv}})</b></div>
             <label>Demo Quality</label>
-            <div ng-init="ctrl.gradedProject.demoq = 1"><span uib-rating ng-model="ctrl.gradedProject.demoq" max="5" state-on="'glyphicon-ok-sign'" state-off="'glyphicon-ok-circle'" aria-labelledby="custom-icons-1"></span> <b>(<i>Rate:</i> {{ctrl.gradedProject.demoq}})</b></div>
+            <div ng-init="ctrl.gradedProject.demoq = 1"><span uib-rating ng-model="ctrl.gradedProject.demoq" max="5" ng-click="ctrl.sumUp()"state-on="'glyphicon-ok-sign'" state-off="'glyphicon-ok-circle'" aria-labelledby="custom-icons-1"></span> <b>(<i>Rate:</i> {{ctrl.gradedProject.demoq}})</b></div>
             <label>Potential</label>
-            <div ng-init="ctrl.gradedProject.potential = 1"><span uib-rating ng-model="ctrl.gradedProject.potential" max="5" state-on="'glyphicon-ok-sign'" state-off="'glyphicon-ok-circle'" aria-labelledby="custom-icons-1"></span> <b>(<i>Rate:</i> {{ctrl.gradedProject.potential}})</b></div>
+            <div ng-init="ctrl.gradedProject.potential = 1"><span uib-rating ng-model="ctrl.gradedProject.potential" ng-click="ctrl.sumUp()" max="5" state-on="'glyphicon-ok-sign'" state-off="'glyphicon-ok-circle'" aria-labelledby="custom-icons-1"></span> <b>(<i>Rate:</i> {{ctrl.gradedProject.potential}})</b></div>
             </h3>
             <hr/>
             <label>Remarks</label>
-            <textarea class="form-control" rows="5" id="comment" required ng-model="ctrl.gradedProject.remarks"></textarea>
+            <textarea class="form-control" rows="5" id="comment" required ng-model="ctrl.gradedProject.remarks" required></textarea>
             <hr/>
             <label>Total Score</label>
-            <label>{{ctrl.gradedProject.totalScore}}</label>
+            <label>{{ctrl.gradedProject.totalScore}} <mark ng-show="ctrl.gradedProject.message">  {{ctrl.gradedProject.message}}</mark></label>
+            <input type="hidden" name="projectName" ng-init="ctrl.gradedProject.projectName=tab.name;" ng-value="ctrl.gradedProject.projectName" /> 
             <hr/>
-            <input id="submit" name"submit" type="submit" class="btn btn-sm btn-primary" />
+            <input id="submit" name"submit" type="submit" class="btn btn-sm btn-primary" ng-disabled="outerForm.$invalid" ng-click="ctrl.saveScore()"/>
           </div>
           
         </ng-form>
       </uib-tab>
+      
     </uib-tabset>
   </form>
 </div>

@@ -1,0 +1,20 @@
+<div class="container">
+    <form name="ctrl.judgeform" class="form-addRun">
+    <div class="form-group col-lg-3">
+        <label for="judgeName">Judge Name</label>
+        <input type="text" ng-model="ctrl.judge.judgeName" class="form-control" id="judgeName" placeholder="Judge name.." required>
+    </div>
+    <div class="form-group col-lg-3">
+        <label for="runNo">Run No.</label>
+        <select ng-model="ctrl.judge.runNo" class="form-control" id="runNo" required>
+            <option ng-repeat="run in ctrl.runs" value="{{run.runName}}">{{run.runName}} - {{run.year}}</option>
+        </select>
+    </div>
+    <div class="form-group col-lg-1">
+        <label for="year">Year</label>
+        <input type="text" ng-model="ctrl.judge.year" class="form-control" id="year" placeholder="year.." required>
+    </div>
+    <br/>
+    <button type="submit" ng-disabled="ctrl.judgeform.$invalid" ng-click="ctrl.saveJudge()" class="btn btn-default">Save</button>
+    </form>
+    </div>

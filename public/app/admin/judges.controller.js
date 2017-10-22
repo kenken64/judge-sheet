@@ -1,64 +1,66 @@
 (function () {
     angular
         .module("JudgeSheetApp")
-        .controller("AdminCtrl", ["$http",'$state','$document','$uibModal', '$scope', 'localStorageService', 'JudgeSheetAppAPI',AdminCtrl])
-        .controller("AddTeamCtrl", ["$http",'$state','$uibModalInstance', 'items' , '$rootScope', 'JudgeSheetAppAPI',AddTeamCtrl]);
+        .controller("JudgesCtrl", ["$http",'$state','$document','$uibModal', '$scope', 'localStorageService', 'JudgeSheetAppAPI', JudgesCtrl])
+        .controller("AddJudgeCtrl", ["$http",'$state','$uibModalInstance', 'items' , '$rootScope', 'JudgeSheetAppAPI', AddJudgeCtrl]);
 
-    function AddTeamCtrl($http,$state,$uibModalInstance, items, $rootScope, JudgeSheetAppAPI){
+    function AddJudgeCtrl($http,$state,$uibModalInstance, items, $rootScope, JudgeSheetAppAPI){
         var self = this;
-        self.team = {
+        self.judge = {
 
         };
 
+        self.runs = [];
+
         JudgeSheetAppAPI.getAllRuns().then((result)=>{
-            console.log(result);
+            console.log(result.data);
             self.runs = result.data;
         }).catch((error)=>{
             console.log(error);
         });
 
-        self.saveTeam = function(){
-            JudgeSheetAppAPI.addTeam(self.team).then((result)=>{
+        self.saveJudge = function(){
+            JudgeSheetAppAPI.addJudge(self.judge).then((result)=>{
                 console.log(result);
-                $rootScope.$broadcast('updateTeamList');
-                $uibModalInstance.close(self.run);
+                $rootScope.$broadcast('updateJudgesList');
+                $uibModalInstance.close(self.judge);
             }).catch((error)=>{
                 console.log(error);
-            });
+            })
         }
+
     }
 
-    function AdminCtrl($http,$state, $document,$uibModal, $scope,localStorageService,  JudgeSheetAppAPI) {
+    function JudgesCtrl($http,$state, $document,$uibModal, $scope, localStorageService, JudgeSheetAppAPI) {
         var self = this;
         var selectedRun = localStorageService.get("selectedGlobalRun");
-        self.data = [];
-        
-        JudgeSheetAppAPI.getAllTeam(selectedRun).then((result)=>{
+        JudgeSheetAppAPI.getAllJudges(selectedRun).then((result)=>{
+            console.log(result);
             self.data = result.data;
         }).catch((error)=>{
             console.log(error);
-        })
+        });
 
-        $scope.$on("updateTeamList",function(){
-            console.log("refresh Team list");
-            var selectedRun = localStorageService.get("selectedGlobalRun");
-            JudgeSheetAppAPI.getAllTeam(selectedRun).then((result)=>{
-                self.data = result.data;
-            }).catch((error)=>{
-                console.log(error);
-            });
+        $scope.$on("updateJudgesList",function(){
+                var selectedRun = localStorageService.get("selectedGlobalRun");
+                console.log("refresh judge list");
+                JudgeSheetAppAPI.getAllJudges(selectedRun).then((result)=>{
+                    self.data = result.data;
+                }).catch((error)=>{
+                    console.log(error);
+                });
         });
 
         $scope.$on("selectedRunChanged",function(){
             var selectedRun = localStorageService.get("selectedGlobalRun");
             console.log("refresh judge list");
-            JudgeSheetAppAPI.getAllTeam(selectedRun).then((result)=>{
+            JudgeSheetAppAPI.getAllJudges(selectedRun).then((result)=>{
                 self.data = result.data;
             }).catch((error)=>{
                 console.log(error);
             });
         });
-
+        
         self.open = function (size, parentSelector) {
             var parentElem = parentSelector ? 
                 angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
@@ -66,8 +68,8 @@
                 animation: self.animationsEnabled,
                 ariaLabelledBy: 'modal-title',
                 ariaDescribedBy: 'modal-body',
-                templateUrl: '../app/admin/addTeam.html',
-                controller: 'AddTeamCtrl',
+                templateUrl: '../app/admin/addJudge.html',
+                controller: 'AddJudgeCtrl',
                 controllerAs: 'ctrl',
                 size: size,
                 appendTo: parentElem,

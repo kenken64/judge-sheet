@@ -36,7 +36,12 @@
                 controller: 'BatchRunsCtrl',
                 controllerAs: 'ctrl'
             })
-            
+            .state("judges", {
+                url: "/judges",
+                templateUrl: "../app/admin/judges.html",
+                controller: 'JudgesCtrl',
+                controllerAs: 'ctrl'
+            })
 
         $urlRouterProvider.otherwise("/home");
 
