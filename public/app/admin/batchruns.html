@@ -1,8 +1,8 @@
 <div ng-include=" '/app/shared/navbar.html' "></div>
 <hr/>
 <div class="row">
-        <div class="col-xs-6 col-sm-1"></div>
-        <div class="col-xs-6 col-sm-3">
+
+        <div class="col-xs-12 .col-sm-6 .col-md-8">
 <button type="button" class="btn btn-primary" ng-model="ctrl.addRun" ng-click="ctrl.open('lg')" uib-btn-checkbox btn-checkbox-true="1" btn-checkbox-false="0">
     New Run
 </button>
@@ -16,7 +16,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="item  col-xs-6 col-lg-6" ng-repeat="batchrun in ctrl.data | orderBy:'year' : true">
+        <div class="item col-xs-12 .col-sm-6 .col-md-8" ng-repeat="batchrun in ctrl.data | orderBy:'year' : true">
             <md-card>
                 <img src="../../assets/images/running_man-512.png" class="md-card-image" alt="image caption">
                 <md-card-content>
