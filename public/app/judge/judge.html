@@ -14,7 +14,7 @@
     <input type="text" id="judgeName" name="judgeName" class="form-control" placeholder="Judge name" required ng-model="ctrl.judgeInfo.judgename" autofocus>
     <label for="batchRun" class="sr-only">Batch</label>
     <select  class="form-control" id="batchRun" ng-model="ctrl.judgeInfo.batchrun" required>
-        <option ng-repeat="batchrun in ctrl.batchruns" value="{{batchrun.runNo}} - {{batchrun.year}}">{{batchrun.runName}} - {{batchrun.year}}</option>
+        <option ng-repeat="batchrun in ctrl.batchruns" value="{{batchrun.runName}} - {{batchrun.year}}">{{batchrun.runName}} - {{batchrun.year}}</option>
     </select>
     <div class="checkbox">
         <label>
