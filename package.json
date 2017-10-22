@@ -28,6 +28,13 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.6.0",
+    "grunt": "^1.0.1",
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-imagemin": "^2.0.1",
+    "grunt-contrib-jshint": "^1.1.0",
+    "grunt-contrib-uglify": "git://github.com/gruntjs/grunt-contrib-uglify.git#harmony",
+    "grunt-ng-annotate": "^3.0.0",
+    "grunt-pagespeed": "^2.0.1",
     "jest": "^20.0.4",
     "superagent": "^3.6.0",
     "supertest": "^3.0.0"
