@@ -11,8 +11,14 @@
         const URL = "/api/v1/";
         console.log("JudgeSheetAppAPI");
         
-        self.getAllJudges = function(selectedRun){
-            return $http.get(`${URL}judges?run=${selectedRun}`);
+        self.getAllJudges = function(selectedRun, itemsPerPage, currentPage){
+            console.log(itemsPerPage);
+            console.log(currentPage);
+            return $http.get(`${URL}judges?run=${selectedRun}&itemsPerPage=${itemsPerPage}&currentPage=${currentPage}`);
+        };
+
+        self.sumOfJudges = function(selectedRun){
+            return $http.get(`${URL}judges/sum?run=${selectedRun}`);
         };
 
         self.addJudge = function(judge){

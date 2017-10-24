@@ -34,13 +34,35 @@ module.exports = function(app, dbs) {
         var arrRun = (req.query.run).split(" - ");
         console.log(arrRun[0]);
         console.log(arrRun[1]);
-        
+        var pages_size = req.query.itemsPerPage;
+        var current_page = req.query.currentPage;
+        var skips = parseInt(pages_size) * (parseInt(current_page) - 1);
+        console.log(skips);
+        console.log(pages_size);
+        console.log(current_page);
         var judgesCol = dbs.production.collection(JUDGES_COLLECTION);
         var query = { runNo: arrRun[0], year: arrRun[1]};
         judgesCol.find(query, {"judgeName":1, "runNo":1, "year":1, "_id":1})
+            .skip(skips).limit(parseInt(pages_size))
             .toArray(function(err, judgeDocs){
             console.log(judgeDocs);
             res.status(200).json(judgeDocs);
+        });
+    });
+
+    // count ...judges
+    app.get(`${API_ENDPOINT}judges/sum`, (req, res)=>{ 
+        console.log("get count for all judges ... " + req.query.run);
+        var arrRun = (req.query.run).split(" - ");
+        console.log(arrRun[0]);
+        console.log(arrRun[1]);
+        
+        var judgesCol = dbs.production.collection(JUDGES_COLLECTION);
+        var query = { runNo: arrRun[0], year: arrRun[1]};
+        judgesCol.count(query, 
+            function(err, cntJudges){
+            console.log(cntJudges);
+            res.status(200).json(cntJudges);
         });
     });
     

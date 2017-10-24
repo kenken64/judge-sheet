@@ -11,7 +11,7 @@
         };
 
         self.runs = [];
-
+        
         JudgeSheetAppAPI.getAllRuns().then((result)=>{
             console.log(result.data);
             self.runs = result.data;
@@ -34,9 +34,18 @@
     function JudgesCtrl($http,$state, $document,$uibModal, $scope, localStorageService, JudgeSheetAppAPI) {
         var self = this;
         var selectedRun = localStorageService.get("selectedGlobalRun");
-        JudgeSheetAppAPI.getAllJudges(selectedRun).then((result)=>{
+        self.totalItems = 0;
+        self.itemsPerPage = 10;
+        self.currentPage = 1;
+        self.maxSize = 5; // control this number of display items on the pagination.
+
+        JudgeSheetAppAPI.getAllJudges(selectedRun , self.itemsPerPage, self.currentPage).then((result)=>{
             console.log(result);
             self.data = result.data;
+            JudgeSheetAppAPI.sumOfJudges(selectedRun).then(function(result){
+                console.log(JSON.stringify(result));
+                self.totalItems = result.data;
+            });
         }).catch((error)=>{
             console.log(error);
         });
@@ -44,8 +53,12 @@
         $scope.$on("updateJudgesList",function(){
                 var selectedRun = localStorageService.get("selectedGlobalRun");
                 console.log("refresh judge list");
-                JudgeSheetAppAPI.getAllJudges(selectedRun).then((result)=>{
+                JudgeSheetAppAPI.getAllJudges(selectedRun, self.itemsPerPage, self.currentPage).then((result)=>{
                     self.data = result.data;
+                    JudgeSheetAppAPI.sumOfJudges(selectedRun).then(function(result){
+                         console.log(result);
+                         self.totalItems = result.data;
+                    });
                 }).catch((error)=>{
                     console.log(error);
                 });
@@ -54,8 +67,12 @@
         $scope.$on("selectedRunChanged",function(){
             var selectedRun = localStorageService.get("selectedGlobalRun");
             console.log("refresh judge list");
-            JudgeSheetAppAPI.getAllJudges(selectedRun).then((result)=>{
+            JudgeSheetAppAPI.getAllJudges(selectedRun, self.itemsPerPage, self.currentPage).then((result)=>{
                 self.data = result.data;
+                JudgeSheetAppAPI.sumOfJudges(selectedRun).then(function(result){
+                     console.log(result);
+                     self.totalItems = result.data;
+                });
             }).catch((error)=>{
                 console.log(error);
             });
@@ -80,6 +97,21 @@
                 }
             }).result.catch(function (resp) {
                 if (['cancel', 'backdrop click', 'escape key press'].indexOf(resp) === -1) throw resp;
+            });
+        };
+
+        self.pageChanged = function(){
+            console.log('Page changed to: ' + self.currentPage);
+            var selectedRun = localStorageService.get("selectedGlobalRun");
+            console.log("refresh pagination judge list");
+            JudgeSheetAppAPI.getAllJudges(selectedRun, self.itemsPerPage, self.currentPage).then((result)=>{
+                self.data = result.data;
+                JudgeSheetAppAPI.sumOfJudges(selectedRun).then(function(result){
+                    console.log(JSON.stringify(result));
+                    self.totalItems = result.data;
+                });
+            }).catch((error)=>{
+                console.log(error);
             });
         };
     

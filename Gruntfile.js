@@ -1,3 +1,5 @@
+const mozjpeg = require('imagemin-mozjpeg');
+
 module.exports = function(grunt) {
     
       // Project configuration.
@@ -44,22 +46,35 @@ module.exports = function(grunt) {
                 url: "https://young-spire-24679.herokuapp.com/#!/home",
                 locale: "en_GB",
                 strategy: "desktop",
-                threshold: 80
+                threshold: 50
               }
             }
-          }
+          },
+          imagemin: {
+            static: {
+                options: {
+                    optimizationLevel: 7,
+                    svgoPlugins: [{removeViewBox: false}],
+                    use: [mozjpeg()] // Example plugin usage
+                },
+                files: {
+                    './public/assets/dist/avatar.png': './public/assets/images/avatar.png',
+                    './public/assets/dist/result.png': './public/assets/images/result.png',
+                    './public/assets/dist/running_man-512.png': './public/assets/images/running_man-512.png'
+                }
+            }
+        }
         
       });
 
-      
-    
       // Load the plugin that provides the "uglify" task.
       grunt.loadNpmTasks('grunt-contrib-concat');
       grunt.loadNpmTasks('grunt-contrib-uglify');
       grunt.loadNpmTasks('grunt-ng-annotate'); 
       grunt.loadNpmTasks('grunt-pagespeed');
-  
+      grunt.loadNpmTasks('grunt-contrib-imagemin');
+
       // Default task(s).
-      grunt.registerTask('default', ['ngAnnotate', 'concat', 'uglify', 'pagespeed']);
+      grunt.registerTask('default', ['ngAnnotate', 'concat', 'uglify', 'pagespeed', 'imagemin']);
     
     };

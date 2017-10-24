@@ -28,6 +28,13 @@ New Judge
         </md-card>
     </div>
 </div>
+<div class="row" ng-show="ctrl.data.length > 0">
+    <div class="list-header col-lg-12 col-md-12 col-sm-12">
+        <ul uib-pagination total-items="ctrl.totalItems" ng-model="ctrl.currentPage"
+            max-size="ctrl.maxSize" items-per-page="ctrl.itemsPerPage" ng-change="ctrl.pageChanged()"
+            class="pagination-sm" boundary-link-numbers="true" rotate="false"></ul>
+    </div>
+</div>
 </div>
 <div class="list" ng-hide="ctrl.data.length>0">
 <h1>No record found.</h1>

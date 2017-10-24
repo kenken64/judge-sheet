@@ -9,7 +9,7 @@
   "main": "server/app.js",
   "scripts": {
     "postinstall": "./node_modules/bower/bin/bower install",
-    "start": "node server/app.js",
+    "start": "grunt --force && nodemon server/app.js",
     "test": "jest --forceExitAfterTestRun"
   },
   "author": "Kenneth Phang",
@@ -30,11 +30,17 @@
     "babel-preset-env": "^1.6.0",
     "grunt": "^1.0.1",
     "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-cssmin": "^2.2.1",
+    "grunt-contrib-htmlmin": "^2.4.0",
     "grunt-contrib-imagemin": "^2.0.1",
     "grunt-contrib-jshint": "^1.1.0",
     "grunt-contrib-uglify": "git://github.com/gruntjs/grunt-contrib-uglify.git#harmony",
+    "grunt-inline-css": "^1.0.0",
     "grunt-ng-annotate": "^3.0.0",
     "grunt-pagespeed": "^2.0.1",
+    "grunt-uncss": "^0.7.1",
+    "grunt-zopfli": "^0.3.3",
+    "imagemin-mozjpeg": "^6.0.0",
     "jest": "^20.0.4",
     "superagent": "^3.6.0",
     "supertest": "^3.0.0"
