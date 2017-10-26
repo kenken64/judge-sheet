@@ -16,10 +16,11 @@
         function  initForm(){
             JudgeSheetAppAPI.getAllRuns().then((result)=>{
                 self.batchruns = result.data;
+                console.log(self.batchruns[0].runName);
             }).catch((error)=>{
                 console.log(error);
             });
-            self.judgeInfo.batchrun = "0";
+            self.judgeInfo.batchrun = null;
         }
         
         function onSubmit(){

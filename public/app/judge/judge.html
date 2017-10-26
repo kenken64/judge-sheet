@@ -10,17 +10,32 @@
 <div class="container" ng-controller="JudgeCtrl as ctrl">
     <form class="form-signin" name="judgeForm" ng-submit="judgeForm.$valid && ctrl.onSubmit()" novalidate>
     <h2 class="form-signin-heading animated infinite bounce">Judge Sheet (D Day)</h2>
-    <label for="judgeName" class="sr-only">Judge Name</label>
-    <input type="text" id="judgeName" name="judgeName" class="form-control" placeholder="Judge name" required ng-model="ctrl.judgeInfo.judgename" autofocus>
-    <label for="batchRun" class="sr-only">Batch</label>
-    <select  class="form-control" id="batchRun" ng-model="ctrl.judgeInfo.batchrun" required>
-        <option ng-repeat="batchrun in ctrl.batchruns" value="{{batchrun.runName}} - {{batchrun.year}}">{{batchrun.runName}} - {{batchrun.year}}</option>
-    </select>
+    <div class="form-group " ng-class="{'has-error': submitted}">
+        <label for="judgeName" class="sr-only">Judge Name</label>
+        <input type="text" id="judgeName" name="judgeName" class="form-control" placeholder="Judge name" required ng-model="ctrl.judgeInfo.judgename" autofocus>
+        <div class="validation" data-ng-show="judgeForm.judgeName.$touched || judgeForm.$submitted">
+            <div data-ng-show="judgeForm.judgeName.$error.required">
+                <span class="glyphicon glyphicon-alert"></span> Judge Name is required
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="form-group" ng-class="{'has-error': submitted}">
+        <label for="batchRun" class="sr-only">Batch</label>
+        <select  class="form-control" id="batchRun" name="batchRun" ng-model="ctrl.judgeInfo.batchrun" required>
+            <option ng-repeat="batchrun in ctrl.batchruns" value="{{batchrun.runName}} - {{batchrun.year}}">{{batchrun.runName}} - {{batchrun.year}}</option>
+        </select>
+        <div class="validation" data-ng-show="judgeForm.batchRun.$touched || judgeForm.$submitted">
+            <div data-ng-show="judgeForm.batchRun.$error.required">
+                <span class="glyphicon glyphicon-alert"></span> Batch Run is required
+            </div>
+        </div>
+    </div>
     <div class="checkbox">
         <label>
         <input type="checkbox" value="remember-me" ng-model="ctrl.judgeInfo.rememberme"> Remember me
         </label>
     </div>
-    <input id="submit" name"submit" type="submit" class="btn btn-lg btn-primary btn-block" />
+    <input id="submit" name"submit" type="submit" class="btn btn-lg btn-primary btn-block" ng-click="submitted= true;"/>
     </form>
 </div> <!-- /container -->
