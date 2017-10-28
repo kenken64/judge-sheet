@@ -16,7 +16,7 @@ npm install -g yarn
 Make sure you have [Node.js](http://nodejs.org/) and the [Heroku Toolbelt](https://toolbelt.heroku.com/) installed.
 
 ```sh
-git clone https://kenken77@bitbucket.org/kenken77/judge-web-app.git # or clone your own fork
+git clone https://github.com/kenken64/judge-sheet.git # or clone your own fork
 
 cd node-js-sample
 grunt
@@ -24,7 +24,7 @@ yarn install
 npm start
 ```
 
-Your app should now be running on [localhost:3000](http://localhost:3000/).
+Your app should now be running on [localhost:3000](http://localhost:3000/).(https://young-spire-24679.herokuapp.com/#!/home)
 
 ## Deploying to Heroku
 
