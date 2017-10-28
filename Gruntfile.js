@@ -46,7 +46,7 @@ module.exports = function(grunt) {
                 url: "https://young-spire-24679.herokuapp.com/#!/home",
                 locale: "en_GB",
                 strategy: "desktop",
-                threshold: 50
+                threshold: 80
               }
             }
           },
