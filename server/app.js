@@ -8,12 +8,13 @@ var compression = require('compression');
 var config = require("./config");
 
 var app = express();
+var oneYear = 31557600000;
 
 var initializeDatabases = require('./dbs');
 
 app.use(cookieParser());
-app.use(bodyParser.urlencoded({extended: false}));
-app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
+app.use(bodyParser.json({limit: '50mb'}));
 
 // Initialize session
 app.use(session({
@@ -22,7 +23,7 @@ app.use(session({
     saveUninitialized: true
 }));
 app.use(compression())
-app.use(express.static(__dirname + "/../public/"));
+app.use(express.static(__dirname + "/../public/", { maxAge: oneYear }));
 
 initializeDatabases(function(err, dbs) {
     if (err) {
