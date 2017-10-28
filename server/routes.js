@@ -1,5 +1,9 @@
 'use strict';
 
+var responseTime = require('response-time');
+var StatsD = require('node-statsd');
+var stats = new StatsD();
+
 const JUDGE_PAGE = "/#!/";
 const API_ENDPOINT = "/api/v1/";
 
