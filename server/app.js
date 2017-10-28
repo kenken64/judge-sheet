@@ -18,7 +18,7 @@ app.use(session({
     resave: false,
     saveUninitialized: true
 }));
-
+app.use(express.compress());
 app.use(express.static(__dirname + "/../public/"));
 
 initializeDatabases(function(err, dbs) {
