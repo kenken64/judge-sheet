@@ -1,19 +1,30 @@
-# node-js-sample
+# judge-web-form
 
-A barebones Node.js app using [Express 4](http://expressjs.com/).
+Its a simple judge sheet for Stackup Demo Day
+A barebones AngularJS and Node.js app using [Express 4](http://expressjs.com/).
+
+
+## Pre-requisite
+```sh
+npm install -g grunt
+npm install -g yarn
+
+```
 
 ## Running Locally
 
 Make sure you have [Node.js](http://nodejs.org/) and the [Heroku Toolbelt](https://toolbelt.heroku.com/) installed.
 
 ```sh
-git clone git@github.com:heroku/node-js-sample.git # or clone your own fork
+git clone https://kenken77@bitbucket.org/kenken77/judge-web-app.git # or clone your own fork
+
 cd node-js-sample
-npm install
+grunt
+yarn install
 npm start
 ```
 
-Your app should now be running on [localhost:5000](http://localhost:5000/).
+Your app should now be running on [localhost:3000](http://localhost:3000/).
 
 ## Deploying to Heroku
 
