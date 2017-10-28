@@ -12,6 +12,8 @@
         console.log("JudgeSheetAppAPI");
         
         self.getAllJudges = function(selectedRun, itemsPerPage, currentPage){
+            console.log(itemsPerPage);
+            console.log(currentPage);
             return $http.get(`${URL}judges?run=${selectedRun}&itemsPerPage=${itemsPerPage}&currentPage=${currentPage}`);
         };
 

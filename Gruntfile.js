@@ -59,6 +59,7 @@ module.exports = function(grunt) {
                 },
                 files: {
                     './public/assets/dist/avatar.png': './public/assets/images/avatar.png',
+                    './public/assets/dist/background.jpg': './public/assets/images/background.jpg',
                     './public/assets/dist/result.png': './public/assets/images/result.png',
                     './public/assets/dist/running_man-512.png': './public/assets/images/running_man-512.png'
                 }

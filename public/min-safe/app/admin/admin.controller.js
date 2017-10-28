@@ -1,7 +1,7 @@
 (function () {
     angular
         .module("JudgeSheetApp")
-        .controller("AdminCtrl", ["$http",'$state','$document','$uibModal', '$scope', 'localStorageService', 'JudgeSheetAppAPI', 'InfiniteScrollFactory', AdminCtrl])
+        .controller("AdminCtrl", ["$http",'$state','$document','$uibModal', '$scope', 'localStorageService', 'JudgeSheetAppAPI', AdminCtrl])
         .controller("AddTeamCtrl", ["$http",'$state','$uibModalInstance', 'items' , '$rootScope', 'JudgeSheetAppAPI',AddTeamCtrl]);
 
     function AddTeamCtrl($http,$state,$uibModalInstance, items, $rootScope, JudgeSheetAppAPI){
@@ -29,7 +29,7 @@
     }
 
     function AdminCtrl($http,$state, $document,$uibModal, $scope,localStorageService,  
-            JudgeSheetAppAPI, InfiniteScrollFactory) {
+            JudgeSheetAppAPI) {
         var self = this;
         var selectedRun = localStorageService.get("selectedGlobalRun");
         self.data = [];

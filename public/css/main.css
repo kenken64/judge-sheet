@@ -1,5 +1,5 @@
 body {
-    background-image: url('../app/judge/background.jpg');
+    background-image: url('../assets/dist/background.jpg');
     background-position:fixed;
     background-repeat:no-repeat;
     background-size:cover;
