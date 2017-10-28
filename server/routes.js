@@ -172,6 +172,13 @@ module.exports = function(app, dbs) {
         });
     });
 
+    app.use(responseTime(function (req, res, time) {
+        var stat = (req.method + req.url).toLowerCase()
+            .replace(/[:\.]/g, '')
+            .replace(/\//g, '_')
+        stats.timing(stat, time)
+    }));
+
     app.use((req, res, next)=> {
         if (req.user == null) {
             res.redirect(JUDGE_PAGE);

@@ -25,7 +25,9 @@
     "express-session": "^1.15.6",
     "mailcomposer": "^4.0.2",
     "mailgun-js": "^0.13.1",
-    "mongodb": "^2.2.33"
+    "mongodb": "^2.2.33",
+    "node-statsd": "^0.1.1",
+    "response-time": "^2.3.2"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

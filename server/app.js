@@ -2,11 +2,14 @@ var express = require("express");
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var session = require("express-session");
-var compression = require('compression')
+var compression = require('compression');
+var responseTime = require('response-time');
+var StatsD = require('node-statsd');
 
 var config = require("./config");
 
 var app = express();
+var stats = new StatsD()
 var initializeDatabases = require('./dbs');
 
 app.use(cookieParser());
