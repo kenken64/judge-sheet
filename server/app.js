@@ -2,6 +2,7 @@ var express = require("express");
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var session = require("express-session");
+var compression = require('compression')
 
 var config = require("./config");
 
@@ -18,7 +19,7 @@ app.use(session({
     resave: false,
     saveUninitialized: true
 }));
-app.use(express.compress());
+app.use(compression())
 app.use(express.static(__dirname + "/../public/"));
 
 initializeDatabases(function(err, dbs) {
